@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { ArrowLeft, ArrowUpRight, Braces, BriefcaseBusiness, CircleUserRound, Mail, Network, X } from "lucide-react";
+import { ArrowUpRight, Braces, BriefcaseBusiness, CircleUserRound, Mail, Network, X } from "lucide-react";
 import { useState } from "react";
 import { experiences } from "@/data/experience";
 import { featuredProjects } from "@/data/projects";
@@ -37,7 +37,6 @@ export function NeuralPortfolio() {
       <header className="neural-masthead">
         <div><span className="signal-dot" />SYSTEM ONLINE</div>
         <p>CRIS JUDE / FULL-STACK SOFTWARE ENGINEER</p>
-        <Link href="/" className="neural-back"><ArrowLeft size={13} /> Editorial view</Link>
       </header>
 
       <motion.div
@@ -56,10 +55,10 @@ export function NeuralPortfolio() {
           <circle className="signal signal-two" r="4"><animateMotion dur="6s" repeatCount="indefinite" path="M170 490 L500 350 L820 476" /></circle>
         </svg>
 
-        <div className="core-node" aria-label="Portfolio network core">
+        <Link href="/editorial" className="core-node" aria-label="Open editorial portfolio">
           <span className="core-orbit orbit-one" /><span className="core-orbit orbit-two" />
-          <div><strong>CJ</strong><span>CORE / 13+Y</span></div>
-        </div>
+          <div><small>CRIS JUDE / CORE</small><strong>FULL-STACK</strong><b>SE</b><span>OPEN EDITORIAL VIEW ↗</span></div>
+        </Link>
 
         {nodes.map((node) => {
           const Icon = node.icon;

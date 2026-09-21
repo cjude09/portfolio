@@ -23,7 +23,7 @@ export function SiteHeader() {
           })}
         </nav>
         <div className="nav-actions">
-          <Link href="/neural" className={cn("neural-mode-link", pathname === "/neural" && "active")}>Neural view</Link>
+          <Link href="/" className={cn("neural-mode-link", pathname === "/" && "active")}>Neural view</Link>
           <ThemeToggle />
           <Link href="/resume" className="resume-link desktop-resume">Résumé ↗</Link>
           <button className="icon-button mobile-menu-button" type="button" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls="mobile-menu" onClick={() => setOpen(!open)}>

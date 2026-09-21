@@ -21,7 +21,7 @@ const expertise = [
 
 const indexLinks = [
   { label: "About", href: "#about" },
-  { label: "Selected work", href: "#work" },
+  { label: "Projects", href: "#work" },
   { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" },
 ];
@@ -53,7 +53,7 @@ export default function EditorialPage() {
               <p>For more than thirteen years, I&apos;ve worked from the database outward and the interface inward—connecting architecture, backend systems, cloud infrastructure, and polished product experiences.</p>
               <p>My practice has grown from desktop and enterprise .NET software into full-stack platforms, cross-platform mobile apps, and applied AI. I use Codex as a collaborative engineering tool for planning, implementation, debugging, review, validation, and documentation.</p>
             </div>
-            <div className="journal-actions"><Link href="/about" className="plain-action">More about my practice <ArrowUpRight size={15} /></Link><Link href="/resume" className="plain-action">View résumé <ArrowUpRight size={15} /></Link></div>
+            <div className="journal-actions"><Link href="/about" className="plain-action">More about my practice <ArrowUpRight size={15} /></Link><a href={profile.resumeUrl} target="_blank" rel="noreferrer" className="plain-action">View résumé <ArrowUpRight size={15} /></a></div>
           </Reveal>
         </section>
 
@@ -63,7 +63,7 @@ export default function EditorialPage() {
         </section>
 
         <section className="journal-section" id="work" aria-labelledby="work-title">
-          <Reveal className="journal-heading"><div><p className="journal-label"><span>03</span> Selected work</p><h2 id="work-title">Systems I&apos;ve helped shape.</h2></div><Link href="/projects" className="plain-action">Project archive <ArrowRight size={15} /></Link></Reveal>
+          <Reveal className="journal-heading"><div><p className="journal-label"><span>03</span> Projects</p><h2 id="work-title">Systems I&apos;ve helped shape.</h2></div><Link href="/projects" className="plain-action">Project archive <ArrowRight size={15} /></Link></Reveal>
           <div className="project-grid">{featuredProjects.map((project, index) => <Reveal key={project.id}><ProjectCard project={project} index={index} /></Reveal>)}</div>
         </section>
 

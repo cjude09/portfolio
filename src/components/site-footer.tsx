@@ -8,10 +8,9 @@ export function SiteFooter() {
         <p>© {new Date().getFullYear()} {profile.name}</p>
         <div className="footer-links">
           <Link href="/projects">Work</Link>
-          <Link href="/resume">Résumé</Link>
+          <a href={profile.resumeUrl} target="_blank" rel="noreferrer">Résumé ↗</a>
           <a href={`mailto:${profile.email}`}>Email</a>
         </div>
-        <p className="built-note">Designed and engineered in Cebu.</p>
       </div>
     </footer>
   );

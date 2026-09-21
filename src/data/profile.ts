@@ -4,6 +4,7 @@ export const profile = {
   title: "Full-Stack Software Engineer",
   location: "Badian, Cebu, Philippines",
   email: "cjvirus.exe@gmail.com",
+  resumeUrl: process.env.NEXT_PUBLIC_RESUME_URL || "/",
   experienceStart: 2011,
   summary:
     "Full-Stack Software Engineer with 13+ years of experience building web, mobile, cloud, and AI-powered applications.",

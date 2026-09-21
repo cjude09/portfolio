@@ -29,7 +29,7 @@ Copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_SITE_URL` before deploy
 
 ## Résumé
 
-`/resume` is a complete, printable HTML résumé and is the default résumé destination. Browser print can save it as PDF. To add a verified PDF later, place it in `public/resume/` and update résumé links to that file; do not add a placeholder download.
+Résumé links open the configured external résumé document (`NEXT_PUBLIC_RESUME_URL`). Set that environment variable if the document URL changes; do not add a placeholder download.
 
 ## Project artwork
 

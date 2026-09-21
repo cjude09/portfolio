@@ -1,0 +1,31 @@
+{
+  "name": "cris-gramatica-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "latest",
+    "geist": "latest",
+    "lucide-react": "latest",
+    "motion": "latest",
+    "next": "latest",
+    "next-themes": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "tailwindcss": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "eslint": "^9.39.2",
+    "eslint-config-next": "latest",
+    "typescript": "^6.0.2"
+  }
+}

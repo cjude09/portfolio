@@ -1,0 +1,10 @@
+.next/
+node_modules/
+.pnpm-store/
+out/
+.vercel/
+*.log
+*.tsbuildinfo
+project-implementation-prompt.md
+.env*
+!.env.example

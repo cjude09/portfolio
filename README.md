@@ -38,3 +38,16 @@ Abstract, original SVG covers live in `public/images/projects/`. Replace any cov
 ## Deployment
 
 The project is ready for Vercel. Configure the production domain as `NEXT_PUBLIC_SITE_URL` so canonical URLs, the sitemap, and social metadata resolve correctly.
+
+## Agent skills
+
+Claude Code skills for design and frontend work live in `.claude/skills/` and are pinned in `skills-lock.json`:
+
+- `portfolio-design`: this site's design system, quality bar, and the workflow that ties the skills below together. Start here for any UI work.
+- `frontend-design` (anthropics/skills): distinctive aesthetic direction and typography.
+- `web-design-guidelines` (vercel-labs/agent-skills): UI, UX, and accessibility audit.
+- `vercel-react-best-practices`, `vercel-composition-patterns`, `vercel-react-view-transitions` (vercel-labs/agent-skills): performance, component APIs, and route transitions.
+- `webapp-testing` (anthropics/skills): Playwright screenshots and interaction checks.
+- `find-skills` (vercel-labs/skills): discover and install more skills.
+
+Restore or update them with `npx skills experimental_install` or `npx skills update -p`.

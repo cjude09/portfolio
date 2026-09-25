@@ -184,6 +184,13 @@ export const projects: Project[] = [
 
 export const featuredProjects = projects.filter((project) => project.featured);
 
+export const statusNotes: Record<ProjectStatus, string> = {
+  "Private case study": "The code and internal details are confidential, so this write-up stays at the level of architecture and decisions.",
+  Ongoing: "Work in progress. Anything not yet built is labelled as planned.",
+  "Planned concept": "Concept stage. Nothing here is presented as built.",
+  Experimental: "An experiment: expect rough edges and changing direction.",
+};
+
 export function getProject(slug: string) {
   return projects.find((project) => project.slug === slug);
 }

@@ -1,29 +1,24 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowDown, ArrowRight, ArrowUpRight, Mail } from "lucide-react";
-import { Reveal } from "@/components/reveal";
 import { ProjectCard } from "@/components/project-card";
 import { experiences } from "@/data/experience";
 import { featuredProjects } from "@/data/projects";
-import { profile } from "@/data/profile";
+import { practiceAreas, profile, yearsOfExperience } from "@/data/profile";
 
 export const metadata: Metadata = {
-  title: "Editorial Portfolio",
-  description: "The editorial portfolio of Full-Stack Software Engineer Cris Jude A. Gramatica.",
+  title: "Overview",
+  description: "The written portfolio of full-stack software engineer Cris Jude A. Gramatica.",
   alternates: { canonical: "/editorial" },
 };
 
-const expertise = [
-  { number: "01", title: "Full-stack systems", text: "Applications, services, APIs, enterprise platforms, and mobile experiences." },
-  { number: "02", title: "Cloud architecture", text: "Data, identity, deployment, observability, and production operations." },
-  { number: "03", title: "Applied AI", text: "Grounded retrieval, document ingestion, semantic search, and useful AI workflows." },
-];
-
-const indexLinks = [
-  { label: "About", href: "#about" },
-  { label: "Projects", href: "#work" },
-  { label: "Experience", href: "#experience" },
-  { label: "Contact", href: "#contact" },
+/** Sections share their codes with the nodes on the home system map. */
+const sections = [
+  { code: "N-01", label: "About", href: "#about" },
+  { code: "N-02", label: "Practice", href: "#practice" },
+  { code: "N-03", label: "Projects", href: "#work" },
+  { code: "N-04", label: "Experience", href: "#experience" },
+  { code: "N-05", label: "Contact", href: "#contact" },
 ];
 
 export default function EditorialPage() {
@@ -31,54 +26,69 @@ export default function EditorialPage() {
     <div className="home-shell container">
       <aside className="home-identity">
         <div>
-          <p className="identity-kicker">Cris Jude A. Gramatica</p>
-          <h1>Full-stack software<br />engineer<span>.</span></h1>
-          <p className="identity-summary">I build dependable web, mobile, cloud, and AI-powered software—with equal care for architecture and the people using it.</p>
-          <nav className="home-index" aria-label="On this page">
-            {indexLinks.map((item, index) => <a href={item.href} key={item.href}><span>{String(index + 1).padStart(2, "0")}</span><i /><strong>{item.label}</strong></a>)}
+          <p className="eyebrow">{profile.name}</p>
+          <h1>Full-stack software engineer<span>.</span></h1>
+          <p className="identity-summary">I build dependable web, mobile, cloud, and AI-powered software, with equal care for the architecture and the people using it.</p>
+          <nav aria-label="On this page">
+            <ul className="home-index">
+              {sections.map((item) => <li key={item.href}><a href={item.href}><span>{item.code}</span><i aria-hidden="true" />{item.label}</a></li>)}
+            </ul>
           </nav>
         </div>
         <div className="identity-foot">
-          <div className="identity-status"><span className="status-dot" />{profile.availability || "Building from Cebu, Philippines"}</div>
-          <a href="#about" className="scroll-cue">Scroll to explore <ArrowDown size={14} /></a>
+          <p className="identity-status"><span className="status-dot" aria-hidden="true" />{profile.availability || `Building from ${profile.location.split(", ").slice(1).join(", ")}`}</p>
+          <a href="#about" className="scroll-cue">Start reading <ArrowDown size={14} aria-hidden="true" /></a>
         </div>
       </aside>
 
       <div className="home-journal">
-        <section className="journal-section journal-opening" id="about">
-          <Reveal>
-            <p className="journal-label"><span>01</span> About</p>
-            <p className="opening-statement">I turn complicated requirements into software that feels <em>clear, resilient, and considered.</em></p>
-            <div className="opening-copy">
-              <p>For more than thirteen years, I&apos;ve worked from the database outward and the interface inward—connecting architecture, backend systems, cloud infrastructure, and polished product experiences.</p>
-              <p>My practice has grown from desktop and enterprise .NET software into full-stack platforms, cross-platform mobile apps, and applied AI. I use Codex as a collaborative engineering tool for planning, implementation, debugging, review, validation, and documentation.</p>
-            </div>
-            <div className="journal-actions"><Link href="/about" className="plain-action">More about my practice <ArrowUpRight size={15} /></Link><a href={profile.resumeUrl} target="_blank" rel="noreferrer" className="plain-action">View résumé <ArrowUpRight size={15} /></a></div>
-          </Reveal>
+        <section className="journal-section journal-opening" id="about" aria-labelledby="about-title">
+          <p className="eyebrow"><span>N-01</span>About</p>
+          <h2 id="about-title" className="opening-statement">I turn complicated requirements into software that feels clear, resilient, and considered.</h2>
+          <div className="opening-copy">
+            <p>For {yearsOfExperience} years I&apos;ve worked from the database outward and the interface inward, connecting architecture, backend systems, cloud infrastructure, and polished product experiences.</p>
+            <p>My practice has grown from desktop and enterprise .NET software into full-stack platforms, cross-platform mobile apps, and applied AI. I use Codex as an engineering collaborator for planning, implementation, review, and documentation, always under my direction.</p>
+          </div>
+          <div className="journal-actions">
+            <Link href="/about" className="text-link">More about my practice <ArrowUpRight size={15} aria-hidden="true" /></Link>
+            <a href={profile.resumeUrl} target="_blank" rel="noreferrer" className="text-link">View résumé <ArrowUpRight size={15} aria-hidden="true" /></a>
+          </div>
         </section>
 
-        <section className="journal-section" aria-labelledby="practice-title">
-          <Reveal><p className="journal-label"><span>02</span> Practice</p><h2 id="practice-title">Work across layers.<br />Think in systems.</h2></Reveal>
-          <div className="practice-list">{expertise.map((item) => <Reveal className="practice-row" key={item.number}><span>{item.number}</span><div><h3>{item.title}</h3><p>{item.text}</p></div></Reveal>)}</div>
+        <section className="journal-section" id="practice" aria-labelledby="practice-title">
+          <p className="eyebrow"><span>N-02</span>Practice</p>
+          <h2 id="practice-title">Work across layers.<br />Think in systems.</h2>
+          <dl className="practice-list">{practiceAreas.map((area) => <div key={area.name}><dt>{area.name}</dt><dd>{area.detail}</dd></div>)}</dl>
         </section>
 
         <section className="journal-section" id="work" aria-labelledby="work-title">
-          <Reveal className="journal-heading"><div><p className="journal-label"><span>03</span> Projects</p><h2 id="work-title">Systems I&apos;ve helped shape.</h2></div><Link href="/projects" className="plain-action">Project archive <ArrowRight size={15} /></Link></Reveal>
-          <div className="project-grid">{featuredProjects.map((project, index) => <Reveal key={project.id}><ProjectCard project={project} index={index} /></Reveal>)}</div>
+          <div className="journal-heading">
+            <div><p className="eyebrow"><span>N-03</span>Projects</p><h2 id="work-title">Systems I&apos;ve helped shape.</h2></div>
+            <Link href="/projects" className="text-link">All projects <ArrowRight size={15} aria-hidden="true" /></Link>
+          </div>
+          <ul className="project-grid">{featuredProjects.map((project) => <ProjectCard project={project} key={project.id} />)}</ul>
         </section>
 
         <section className="journal-section" id="experience" aria-labelledby="experience-title">
-          <Reveal className="journal-heading"><div><p className="journal-label"><span>04</span> Experience</p><h2 id="experience-title">A practice built over time.</h2></div><Link href="/experience" className="plain-action">Full timeline <ArrowRight size={15} /></Link></Reveal>
-          <div className="journal-experience">{experiences.slice(0, 4).map((item) => <article key={`${item.company}-${item.period}`}><p>{item.period}</p><div><h3>{item.role}</h3><span>{item.company}</span><p>{item.summary}</p></div></article>)}</div>
+          <div className="journal-heading">
+            <div><p className="eyebrow"><span>N-04</span>Experience</p><h2 id="experience-title">A practice built over time.</h2></div>
+            <Link href="/experience" className="text-link">Full timeline <ArrowRight size={15} aria-hidden="true" /></Link>
+          </div>
+          <ol className="journal-experience">
+            {experiences.slice(0, 4).map((item) => (
+              <li key={`${item.company}-${item.period}`}>
+                <span>{item.period}</span>
+                <div><h3>{item.role}</h3><p className="company">{item.company}</p><p className="summary">{item.summary}</p></div>
+              </li>
+            ))}
+          </ol>
         </section>
 
-        <section className="journal-section journal-contact" id="contact">
-          <Reveal>
-            <p className="journal-label"><span>05</span> Contact</p>
-            <h2>Good software begins with a precise conversation.</h2>
-            <p>Tell me about the problem, the people it affects, and why it matters.</p>
-            <a className="contact-email" href={`mailto:${profile.email}`}><Mail size={18} />{profile.email}<ArrowUpRight size={18} /></a>
-          </Reveal>
+        <section className="journal-section journal-contact" id="contact" aria-labelledby="contact-title">
+          <p className="eyebrow"><span>N-05</span>Contact</p>
+          <h2 id="contact-title">Good software begins with a precise conversation.</h2>
+          <p className="contact-lead">Tell me about the problem, the people it affects, and why it matters.</p>
+          <a className="contact-email" href={`mailto:${profile.email}`}><Mail size={18} aria-hidden="true" />{profile.email}<ArrowUpRight size={18} aria-hidden="true" /></a>
         </section>
       </div>
     </div>

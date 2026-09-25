@@ -2,19 +2,18 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import type { Project } from "@/data/projects";
 
-export function ProjectCard({ project, index }: { project: Project; index: number }) {
+export function ProjectCard({ project, headingLevel: Heading = "h3" }: { project: Project; headingLevel?: "h2" | "h3" }) {
   return (
-    <article className="project-card">
-      <Link href={`/projects/${project.slug}`} aria-label={`View ${project.title} case study`}>
-        <span className="project-number">{String(index + 1).padStart(2, "0")}</span>
-        <div className="project-card-content">
-          <div className="project-meta"><span>{project.category}</span><span>{project.status}</span></div>
-          <h3>{project.title}</h3>
+    <li className="project-card">
+      <Link href={`/projects/${project.slug}`}>
+        <div>
+          <p className="project-meta"><span>{project.category}</span><span>{project.status}</span></p>
+          <Heading>{project.title}</Heading>
           <p>{project.shortDescription}</p>
-          <div className="project-tech">{project.technologies.slice(0, 4).join(" · ")}</div>
+          <ul className="project-tech" aria-label="Technologies">{project.technologies.slice(0, 4).map((tech) => <li key={tech}>{tech}</li>)}</ul>
         </div>
-        <ArrowUpRight className="project-arrow" size={21} />
+        <ArrowUpRight className="project-arrow" size={22} aria-hidden="true" />
       </Link>
-    </article>
+    </li>
   );
 }

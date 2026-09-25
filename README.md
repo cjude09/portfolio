@@ -31,9 +31,11 @@ Copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_SITE_URL` before deploy
 
 Résumé links open the configured external résumé document (`NEXT_PUBLIC_RESUME_URL`). Set that environment variable if the document URL changes; do not add a placeholder download.
 
-## Project artwork
+## Design
 
-Abstract, original SVG covers live in `public/images/projects/`. Replace any cover with a genuine project screenshot or approved artwork, preserve the filename or update `coverImage`, and supply accurate alt text in the rendering component when changing its role.
+- Home (`/`) is an interactive system map: `src/components/neural-portfolio.tsx` (client shell) renders panel content from `src/components/neural-panels.tsx` (server). Keys 1–5 open nodes and Escape closes the panel.
+- Editorial pages share one token palette in `src/app/globals.css`: cyan marks live or interactive things, violet marks metadata. Section labels reuse the map's node codes (N-01 to N-05).
+- Case-study heroes are drawn from each project's `technologies` list (`src/components/stack-plate.tsx`). The SVGs in `public/images/projects/` are no longer shown; replace them with real screenshots if you add a gallery.
 
 ## Deployment
 

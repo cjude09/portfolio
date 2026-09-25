@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { Menu, Network, X } from "lucide-react";
 import { useState } from "react";
 import { navigation } from "@/data/navigation";
 import { profile } from "@/data/profile";
@@ -18,15 +18,15 @@ export function SiteHeader() {
       <div className="nav-shell">
         <Link href="/" className="wordmark" aria-label="Cris Jude home">CJ<span>.</span></Link>
         <nav className="desktop-nav" aria-label="Primary navigation">
-          {navigation.map((item, index) => {
-            const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
-            return <Link key={item.href} className={cn("nav-link", active && "active")} href={item.href}><span>{String(index + 1).padStart(2, "0")}</span>{item.label}</Link>;
+          {navigation.map((item) => {
+            const active = pathname.startsWith(item.href);
+            return <Link key={item.href} className={cn("nav-link", active && "active")} href={item.href} aria-current={active ? "page" : undefined}>{item.label}</Link>;
           })}
         </nav>
         <div className="nav-actions">
-          <Link href="/" className={cn("neural-mode-link", pathname === "/" && "active")}>Neural view</Link>
+          <Link href="/" className="map-link"><Network size={15} aria-hidden="true" />System map</Link>
           <ThemeToggle />
-          <a href={profile.resumeUrl} target="_blank" rel="noreferrer" className="resume-link desktop-resume">Résumé ↗</a>
+          <a href={profile.resumeUrl} target="_blank" rel="noreferrer" className="resume-link desktop-resume">Résumé</a>
           <button className="icon-button mobile-menu-button" type="button" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls="mobile-menu" onClick={() => setOpen(!open)}>
             {open ? <X size={19} /> : <Menu size={19} />}
           </button>
@@ -34,8 +34,9 @@ export function SiteHeader() {
       </div>
       {open && (
         <nav id="mobile-menu" className="mobile-nav" aria-label="Mobile navigation">
-          {navigation.map((item) => <Link key={item.href} onClick={() => setOpen(false)} className={cn("mobile-nav-link", pathname === item.href && "active")} href={item.href}>{item.label}<span>↗</span></Link>)}
-          <a href={profile.resumeUrl} target="_blank" rel="noreferrer" onClick={() => setOpen(false)} className="button">View résumé ↗</a>
+          {navigation.map((item) => <Link key={item.href} onClick={() => setOpen(false)} className={cn("mobile-nav-link", pathname.startsWith(item.href) && "active")} href={item.href}>{item.label}</Link>)}
+          <Link href="/" onClick={() => setOpen(false)} className="mobile-nav-link">System map</Link>
+          <a href={profile.resumeUrl} target="_blank" rel="noreferrer" onClick={() => setOpen(false)} className="button">View résumé</a>
         </nav>
       )}
     </header>
